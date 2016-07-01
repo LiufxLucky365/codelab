@@ -1,0 +1,8 @@
+{
+    "require": {
+        "guzzle/guzzle": "^3.9",
+        "monolog/monolog": "^1.17",
+        "guzzlehttp/guzzle": "~6.0",
+        "phpunit/phpunit": "^5.0"
+    }
+}

@@ -1,0 +1,81 @@
+一、 核心类为Diff
+Diff类可以从数组或者字符串进行初始化，配置如下：
+
+-v print version
+-h print this Usage
+-l left file which to diff
+-r right file which to diff
+-t file type, 'json' or 'xml'
+-o output file
+-e ouput encode, 'utf-8' is default value
+
+e.g.
+// 初始化
+$diff = new Diff(array(
+	'-l' => LEFT_DIFF_FILE, 
+	'-r' => RIGHT_DIFF_FILE,
+	'-t' => 'json' | 'xml',
+));
+
+// 或者
+$diff = new Diff("-l LEFT_DIFF_FILE -r RIGHT_DIFF_FILE -t json");
+
+// 进行diff操作
+$diff->diff();
+
+// 输出diff结果
+$diff->output();
+
+
+二、 bin文件 bin/diff
+可执行文件，利用Diff完成diff操作的脚本
+
+
+三、 实例
+假如左侧文件 diff_l 内容为
+{"format":"example1","content":[{"align":"center"},{"align1":"center"}]}
+{"format":"this is the same line"}
+{"format":"this is the same line"}
+
+右侧文件 diff_r 内容为
+{"format":"example2","content":[{"align":"left"},{"align1":"center1"}]}
+{"format":"this is the same line2"}
+{"format":"this is the same line4"}
+{"format":"this is the same line3"}
+
+在项目根目录执行:
+bin/diff -l examples/diff_file/diff_l -r examples/diff_file/diff_r -t json
+
+输出为:
+there are 5 diff[s], next is the detail differences.
+++++++++++++
+---line 1:
+--> format
+	> example1
+	< example2
+--> content--> 0--> align
+	> center
+	< left
+--> content--> 1--> align1
+	> center
+	< center1
+
+---line 2:
+--> format
+	> this is the same line
+	< this is the same line2
+
+---line 3:
+--> format
+	> this is the same line
+	< this is the same line4
+
+---line 4:
+left is NULL
+
+说明:
+1. 共有5处不同
+2. 第一行的format值不同；content的第一个元素的align不同；content的第二个元素align1不同
+3. 第二行format不同
+4. 第三行format不同
+5. 第四行左侧为空

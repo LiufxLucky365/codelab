@@ -1,0 +1,46 @@
+#!/usr/bin/php
+<?php
+    /**
+     * 利用Diif类完成diff操作的用户接口文件
+     */
+    require_once('src/Diff.class.php');
+
+    $arrArg      = $_SERVER['argv'];
+    $strFileName = array_shift($arrArg);
+
+    try {
+        $objDiff = new Diff($arrArg);
+
+        // 获取配置信息
+        $arrOpt = $objDiff->getOption();
+
+        // 输出版本
+        if ($arrOpt['-v'] === true) {
+            $strVersion = Diff::getVersion();
+            echo "Diff version $strVersion\n";
+            exit();
+        }
+
+        // 输出帮助信息
+        if ($arrOpt['-h'] === true) {
+            $strUsage = Diff::getUsage();
+            echo $strUsage . PHP_EOL;
+            exit();
+        }
+
+        $objDiff->diff();
+        $objDiff->output();
+
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+        echo PHP_EOL;
+        $strUsage = Diff::getUsage();
+        echo $strUsage . PHP_EOL;
+        exit();
+    }
+
+
+
+
+
+    
