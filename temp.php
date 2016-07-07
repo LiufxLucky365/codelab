@@ -3,7 +3,6 @@ $a = [1, 3, 4, '好'];
 print_r(json_encode($a));
 die();
 
-
 $a = [1, 3, 4];
 var_dump(in_array("3a", $a));
 var_dump(in_array("3a", $a, true));
