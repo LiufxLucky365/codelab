@@ -1,4 +1,11 @@
 <?php
+    $strTest = '1212';
+    $rule  = "/(\d)(\d)(\1)(\/";
+    $a = preg_match($rule, $strTest, $result);
+    print_r($a);
+    print_r($result);
+    die();
+
     $strTest = 'produ@qq.com';
     $rule  = "/.*@baidu.com$/";
     $a = preg_match($rule, $strTest, $result);

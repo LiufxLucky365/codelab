@@ -4,11 +4,12 @@
  */
 
 
-// 移除特殊字符: 只保留数字、字母 和 !#$%&'*+-=?^_`{|}~@.[].
-$test = "!#$%&'*+-=?^_`{|}~@.[]ggGGGG321【】";
-$test = 'lllll';
-$email = filter_var($test, FILTER_SANITIZE_EMAIL);
-var_dump($email);
+// 移除字符: 只保留数字、字母 和 !#$%&'*+-=?^_`{|}~@.[].
+$test = "!#$%&'*+-=?^_`{|}~@是的.[]g\tsdfsfs\ngGGGG3是21【】";
+$test = str_replace(array("\t", "\n"), "", $test);
+//$test = 'lllll';
+//$email = filter_var($test, FILTER_SANITIZE_EMAIL);
+var_dump($test);die();
 
 // 验证合法邮箱
 $email = filter_var($test, FILTER_VALIDATE_EMAIL);

@@ -1,4 +1,25 @@
 <?php
+function isMobile($mobile) {
+    if (!is_numeric($mobile)) {
+    }
+    $ret = preg_match_all('/1\d{10}/', $mobile, $match);
+    var_dump($match);
+    return $ret;
+}
+
+$phone = "0791-87887887887881727，13837958853,13837958853";
+$a = isMobile($phone);
+var_dump($a);
+die();
+
+
+function test($a = null) {
+    var_dump($a);
+}
+test(array());
+die();
+
+
 $a = [1, 3, 4, '好'];
 print_r(json_encode($a));
 die();
