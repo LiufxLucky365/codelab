@@ -1,9 +1,10 @@
 <?php
-    $strTest = '1212';
-    $rule  = "/(\d)(\d)(\1)(\/";
+    $strTest = '/url?q=http://bj.5i5j.com/community/196121&sa=U&ved=0ahUKEwi-ooSi0s_PAhVBrY8KHQ3fB_QQFgg8MAc&usg=AFQjCNE0p3mSd7dg019Iaq-8Bi8FRe5vHw';
+    $rule  = "/\/url\?q=(.*)&sa/i";
     $a = preg_match($rule, $strTest, $result);
     print_r($a);
     print_r($result);
+    empty($a);
     die();
 
     $strTest = 'produ@qq.com';
