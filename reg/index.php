@@ -1,4 +1,26 @@
 <?php
+    //$strTest = "我虽然不是你大爷\n但我却是你爸爸\n你大爷也可以是我\n这行没有关键词\n这行只有你大爷\n这行只有我\n这行两个我我\n";
+    //$rule  = "/.*(我|大爷).*(我|大爷).*\n/";
+
+    $strTest = "
+    abc\n
+    AbC\n
+    aAC\n
+    AaC\n
+    aaC\n";
+    $rule  = "/.*(A|C).*(A|C).*\n/";
+    $a = preg_match($rule, $strTest, $result);
+    print_r($a);
+    print_r($result);
+    die();
+
+    $strTest = '{"code":1,"message":"db update error[sql] UPDATE  staffUser SET activeStatus=20, activeStatusName=\'\u5df2\u542f\u7528\', staffUname=\'liufuxin\', staffUnameLaw=\'\u5218\u590d\u65b0123\', staffPhone=\'13349895095\', roleId=10, roleName=\'\u767e\u5ea6\u7ba1\u7406\u5458\', companyId=10, companyName=\'\u767e\u5ea6\', updateTime=1478834388 WHERE (staffUid= 310005001) [error] s:50:\"Duplicate entry \'13349895095\' for key \'staffPhone\'\";","result":""}';
+    $rule  = "/Duplicate .* for key '([a-zA-Z]+)'/";
+    $a = preg_match($rule, $strTest, $result);
+    print_r($a);
+    print_r($result);
+    die();
+
     $strTest = '/url?q=http://bj.5i5j.com/community/196121&sa=U&ved=0ahUKEwi-ooSi0s_PAhVBrY8KHQ3fB_QQFgg8MAc&usg=AFQjCNE0p3mSd7dg019Iaq-8Bi8FRe5vHw';
     $rule  = "/\/url\?q=(.*)&sa/i";
     $a = preg_match($rule, $strTest, $result);
